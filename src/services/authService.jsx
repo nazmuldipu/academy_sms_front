@@ -12,11 +12,12 @@ export async function login(email, password) {
     email: email,
     password: password,
   });
-  console.log(jwt);
-  localStorage.setItem(tokenKey, jwt);
+  http.setJwt(jwt.token);
+  localStorage.setItem(tokenKey, jwt.token);
 }
 export function logout() {
   localStorage.removeItem(tokenKey);
+  window.location = "/";
 }
 
 export function loginWithJwt(jwt) {
@@ -36,6 +37,15 @@ export function getCurrentUser() {
   }
 }
 
+export function isAuthenticated() {
+  try {
+    const jwt = localStorage.getItem(tokenKey);
+    return !!jwt;
+  } catch (ex) {
+    return null;
+  }
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   login,
@@ -43,4 +53,5 @@ export default {
   getCurrentUser,
   loginWithJwt,
   getJwt,
+  isAuthenticated,
 };

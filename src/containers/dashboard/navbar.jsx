@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const Navbar = ({ isAuth, onLogout }) => {
+import auth from "../../services/authService";
+const Navbar = () => {
+  const onLogout = () => {
+    auth.logout();
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark homeNavbar">
       <div className="container">
@@ -27,31 +30,23 @@ const Navbar = ({ isAuth, onLogout }) => {
                 Dashboard
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/dashboard/users" className="nav-link">
+                Users
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/dashboard/companies" className="nav-link">
+                Companies
+              </Link>
+            </li>
           </ul>
-          <ul className="nav navbar-nav navbar-right">
-            {!isAuth && (
-              <React.Fragment>
-                <li className="nav-item">
-                  <Link to="/register" className="nav-link">
-                    Register
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link">
-                    Login
-                  </Link>
-                </li>
-              </React.Fragment>
-            )}
-            {isAuth && (
-              <React.Fragment>
-                <li className="nav-item">
-                  <div onClick={onLogout} className="nav-link">
-                    Logout
-                  </div>
-                </li>
-              </React.Fragment>
-            )}
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <div onClick={onLogout} className="nav-link">
+                Logout
+              </div>
+            </li>
           </ul>
         </div>
       </div>

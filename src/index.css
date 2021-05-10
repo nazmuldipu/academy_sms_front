@@ -29,3 +29,7 @@ code {
   padding: 0.15rem 0.25rem !important;
   line-height: 1.4 !important;
 }
+.nav-link {
+  cursor: pointer;
+}
+
