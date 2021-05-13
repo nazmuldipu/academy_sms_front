@@ -1,18 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import { getAll, save, update } from "../../../services/companyService";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loadCompanies,
+  saveCompany,
+  updateCompany,
+} from "./../../../store/companies";
+
 import CompanyTable from "./../../../components/tables/companyTable";
 import CompanyForm from "./../../../components/forms/companyForm";
 
 const CompanyIndex = () => {
-  const [companyPage, setCompanyPage] = useState({});
-  const [company, setCompany] = useState({});
-  const [edit, setEdit] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
+  const dispatch = useDispatch();
+  const companyPage = useSelector((state) => state.entities.companies.page);
 
   useEffect(() => {
-    getCompanies();
+    dispatch(loadCompanies(1));
   }, []);
+
+  const [company, setCompany] = useState({});
+  const [edit, setEdit] = useState(false);
 
   const handleSelect = async (company) => {
     setCompany(company);
@@ -21,46 +28,30 @@ const CompanyIndex = () => {
 
   const handleClear = async () => {
     setCompany({});
-    setEdit(false);
-  };
-
-  const getCompanies = async () => {
-    try {
-      const resp = await getAll();
-      setCompanyPage(resp.data);
-    } catch (err) {
-      if (err.response && err.response.data) {
-        setErrMsg(err.response.data.error_description);
-      }
-    }
   };
 
   const handleSubmit = async (event) => {
-    console.log(event);
-    setCompany({})
-    try {
-      if (edit) {
-        const resp = await update(company._id, event);
-        console.log(resp);
-      } else {
-        const resp = await save(event);
-        console.log(resp);
-      }
-    } catch (err) {
-      if (err.response && err.response.data) {
-        setErrMsg(err.response.data.error_description);
-      }
+    setCompany({});
+    if (edit) {
+      dispatch(updateCompany(company._id, event));
+    } else {
+      dispatch(saveCompany(event));
     }
+  };
+
+  const handlePagination = (page) => {
+    dispatch(loadCompanies(page));
   };
 
   return (
     <div className="container">
-      <div>{errMsg}</div>
+      {/* <div>{errMsg}</div> */}
       <div className="row my-3">
         <div className="col-md-7">
           <CompanyTable
             companyPage={companyPage}
             select={handleSelect}
+            onPagination={handlePagination}
           ></CompanyTable>
         </div>
         <div className="col-md-5">
