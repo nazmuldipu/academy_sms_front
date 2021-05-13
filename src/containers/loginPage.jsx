@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Loading from "./../ui/loading";
-import LoginForm from "./../forms/loginForm";
 import auth from "../services/authService";
+import LoginForm from '../components/forms/loginForm'
 
 const LoginPage = ({ location }) => {
   const [errorMessage, setErrorMessage] = useState("");

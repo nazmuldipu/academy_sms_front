@@ -42,6 +42,12 @@ $divider-color: #bdbdbd;
   color: $primary-color-text;
   background-color: $primary-color;
 }
+
 .table-head {
   background: $primary-color !important;
+  border: 1px solid $primary-color;
+}
+
+.border-nav {
+  border-bottom: 2px solid $primary-color !important;
 }

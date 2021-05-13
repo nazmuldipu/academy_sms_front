@@ -100,9 +100,11 @@ const useForm = ({ schema }) => {
 
   const renderButton = (label, classNmae = "btn btn-sm btn-primary") => {
     return (
-      <button disabled={validateForm()} className={classNmae}>
-        {label}
-      </button>
+      <React.Fragment>
+        <button className={classNmae}>
+          {label}
+        </button>        
+      </React.Fragment>
     );
   };
 

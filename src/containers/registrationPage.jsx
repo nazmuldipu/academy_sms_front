@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Loading from "./../ui/loading";
 import { useHistory } from "react-router-dom";
-import RegistrationForm from "./../forms/registrationForm";
+import RegistrationForm from "../components/forms/registrationForm";
 import userService from "../services/userService";
 
 const RegistrationPage = () => {

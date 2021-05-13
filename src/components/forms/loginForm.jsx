@@ -2,7 +2,7 @@ import Joi from "joi-browser";
 import React from "react";
 import { Link } from "react-router-dom";
 
-import useForm from "./../ui/forms/useForm";
+import useForm from "../../ui/forms/useForm";
 
 const LoginForm = ({ onSubmit, error }) => {
   const schema = {
@@ -29,7 +29,7 @@ const LoginForm = ({ onSubmit, error }) => {
         <form onSubmit={handleSubmit}>
           {renderInput("username", "Email")}
           {renderInput("password", "Password", "password")}
-          
+
           <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
             {renderButton("Login", "btn btn-sm btn-block btn-success")}
           </div>
