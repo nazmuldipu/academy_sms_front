@@ -8,6 +8,10 @@ const useForm = ({ schema }) => {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
+  const initForm = (data) => {
+    setData(data);
+  };
+
   const handleChange = ({ currentTarget: input }) => {
     if (input.type === "checkbox") input.value = input.checked;
 
@@ -101,15 +105,14 @@ const useForm = ({ schema }) => {
   const renderButton = (label, classNmae = "btn btn-sm btn-primary") => {
     return (
       <React.Fragment>
-        <button className={classNmae}>
-          {label}
-        </button>        
+        <button className={classNmae}>{label}</button>
       </React.Fragment>
     );
   };
 
   return {
     data,
+    initForm,
     validateSubmit,
     validateForm,
     renderInput,

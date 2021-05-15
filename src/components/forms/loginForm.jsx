@@ -22,7 +22,7 @@ const LoginForm = ({ onSubmit, error }) => {
   };
 
   return (
-    <div className="bg-light pb-3 border rounded">
+    <div className="pb-3 border rounded shadow-sm">
       <h3 className="text-center">Login</h3>
       <div className="p-3">
         <span className="form-text text-danger text-center">{error}</span>

@@ -7,7 +7,7 @@ import TableFotter from "./tableFotter";
 const Table = ({ tableName, columns, data, onPagination }) => {
   
   return (
-    <table className="table table-sm border">
+    <table className="table table-sm border m-0">
       <TableHeader columns={columns} tableName={tableName} />
       <TableBody data={data.docs} columns={columns} />
       <TableFotter data={data} columns={columns} onPagination={onPagination}/>

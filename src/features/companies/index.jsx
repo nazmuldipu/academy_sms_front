@@ -5,6 +5,7 @@ import { loadCompanies, saveCompany, updateCompany } from "./companiesSlice";
 
 import CompanyTable from "./companyTable";
 import CompanyForm from "./companyForm";
+import CompanyNavbar from "./navbar";
 
 const CompanyIndex = () => {
   const dispatch = useDispatch();
@@ -23,16 +24,17 @@ const CompanyIndex = () => {
   };
 
   const handleClear = async () => {
+    setEdit(false);
     setCompany({});
   };
 
   const handleSubmit = async (event) => {
-    setCompany({});
     if (edit) {
       dispatch(updateCompany(company._id, event));
     } else {
       dispatch(saveCompany(event));
     }
+    setCompany({});
   };
 
   const handlePagination = (page) => {
@@ -41,6 +43,7 @@ const CompanyIndex = () => {
 
   return (
     <div className="container">
+      <CompanyNavbar />
       {/* <div>{errMsg}</div> */}
       <div className="row my-3">
         <div className="col-md-7">

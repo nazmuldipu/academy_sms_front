@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 import useForm from "./../../ui/forms/useForm";
 
 const CompanyForm = ({ company, onSubmit, onClear, error }) => {
-  // const [object, setObject] = useState({});
   const schema = {
     name: Joi.string().required().label("Name"),
     name_bd: Joi.string().required().label("Name in Bangla"),
@@ -21,35 +20,15 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
     per_month: Joi.number().required().label("Per Month"),
   };
 
-  const { data, renderInput, renderButton, validateSubmit } = useForm({
-    schema,
-  });
-
-  const fields = [
-    "name",
-    "name_bd",
-    "contact_person",
-    "phone",
-    "web",
-    "max_entity",
-    "sms_quota",
-    "per_month",
-  ];
+  const { data, initForm, renderInput, renderButton, validateSubmit } = useForm({ schema });  
 
   useEffect(() => {
     if (company && company.name) {
-      fields.forEach((f) => (data[f] = company[f]));
-      console.log(data);
-      // setObject(company);
+      initForm(company);
     } else {
-      fields.forEach((f) => (data[f] = company[f]));
-      // setObject({});
+      initForm({});
     }
   }, [company]);
-
-  
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "../../ui/tables/table";
 
-const UserTable = ({ userPage, select }) => {
+const UserTable = ({ userPage, select, onPagination }) => {
   const columns = [
     { path: "name", label: "Name" },
     { path: "email", label: "Email" },
@@ -20,9 +20,9 @@ const UserTable = ({ userPage, select }) => {
   ];
 
   return (
-    <div>
+    <div className="border rounded shadow-sm">
       {userPage.docs && (
-        <Table tableName={"User Table"} columns={columns} data={userPage} />
+        <Table tableName={"User Table"} columns={columns} data={userPage} onPagination={onPagination}/>
       )}
     </div>
   );

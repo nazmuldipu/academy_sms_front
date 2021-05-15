@@ -23,7 +23,7 @@ const RegistrationForm = ({ onSubmit, error }) => {
   };
 
   return (
-    <div className="bg-light pb-3 border rounded">
+    <div className="pb-3 border rounded shadow-sm">
       <h3 className="text-center">Register</h3>
 
       <div className="p-3">
@@ -33,7 +33,6 @@ const RegistrationForm = ({ onSubmit, error }) => {
           {renderInput("email", "Email")}
           {renderInput("password", "Password", "password")}
 
-          
           <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
             {renderButton("Register", "btn btn-sm btn-block btn-success")}
           </div>
