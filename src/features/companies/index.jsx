@@ -1,14 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loadCompanies,
-  saveCompany,
-  updateCompany,
-} from "./../../../store/companies";
+import { loadCompanies, saveCompany, updateCompany } from "./companiesSlice";
 
-import CompanyTable from "./../../../components/tables/companyTable";
-import CompanyForm from "./../../../components/forms/companyForm";
+import CompanyTable from "./companyTable";
+import CompanyForm from "./companyForm";
 
 const CompanyIndex = () => {
   const dispatch = useDispatch();
@@ -40,7 +36,7 @@ const CompanyIndex = () => {
   };
 
   const handlePagination = (page) => {
-    dispatch(loadCompanies(page));
+    if (companyPage.page !== page) dispatch(loadCompanies(page));
   };
 
   return (

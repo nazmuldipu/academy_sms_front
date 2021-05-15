@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import bugsReducer from './bugs';
-import companiesReducer from './companies';
+import companiesReducer from '../features/companies/companiesSlice';
 
 export default combineReducers({
     bugs: bugsReducer,

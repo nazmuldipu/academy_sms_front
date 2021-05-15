@@ -1,10 +1,11 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import DashboardIndex from '.';
-import CompanyRoutes from './companies/routes';
-import Navbar from './navbar';
-import Users from './users';
+import DashboardIndex from ".";
+
+import Navbar from "./navbar";
+import Users from "./users";
+import CompanyRoutes from "../../features/companies";
 
 const DashboardRouter = () => {
   return (
