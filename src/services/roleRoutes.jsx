@@ -1,5 +1,4 @@
 import React from "react";
-import auth from "./authServices";
 import { Route, Redirect } from "react-router-dom";
 
 const RoleRoute = ({ path, component: Component, render, roles, ...rest }) => {
@@ -7,9 +6,7 @@ const RoleRoute = ({ path, component: Component, render, roles, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        const user = auth.getCurrentUser();
-        console.log(user);
-        if (false) {
+        if (true) {
           return (
             <Redirect
               to={{

@@ -6,7 +6,7 @@ import useForm from "../../ui/forms/useForm";
 
 const LoginForm = ({ onSubmit, error }) => {
   const schema = {
-    username: Joi.string().email({ minDomainAtoms: 2 }).required().label("Username"),
+    email: Joi.string().email({ minDomainAtoms: 2 }).required().label("Email"),
     password: Joi.string().min(5).required().label("Password"),
   };
 
@@ -25,9 +25,9 @@ const LoginForm = ({ onSubmit, error }) => {
     <div className="pb-3 border rounded shadow-sm">
       <h3 className="text-center">Login</h3>
       <div className="p-3">
-        <span className="form-text text-danger text-center">{error}</span>
+        <div className="form-text text-danger text-center">{error}</div>
         <form onSubmit={handleSubmit}>
-          {renderInput("username", "Email")}
+          {renderInput("email", "Email")}
           {renderInput("password", "Password", "password")}
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">

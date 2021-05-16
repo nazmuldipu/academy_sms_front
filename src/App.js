@@ -4,9 +4,9 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
 import HomePage from './containers/homePage';
-import LoginPage from './containers/loginPage';
+import LoginPage from './features/auth/loginPage'
 import NotFound from './containers/notFound';
-import RegistrationPage from './containers/registrationPage';
+import RegistrationPage from './features/auth/registrationPage';
 import ProtectedRoute from "./services/protectedRoutes";
 import DashboardRouter from './containers/dashboard/routes';
 

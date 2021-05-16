@@ -1,13 +1,16 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import auth from "./authService";
+import { useDispatch, useSelector } from "react-redux";
+import { isAuth } from "../features/auth/authSlice";
 
 const ProtectedRoute = ({ path, component: Component, render, ...rest }) => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => isAuth(dispatch, state));
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (!auth.isAuthenticated())
+        if (!auth)
           return (
             <Redirect
               to={{

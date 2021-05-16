@@ -45,10 +45,11 @@ export default slice.reducer;
 //Action creators
 const url = "/companies";
 export const loadCompanies = (page = 1) => (dispatch, getState) => {
-    const { lastFetch } = getState().entities.bugs;
-
+    //Implement caching
+    const { lastFetch } = getState().entities.companies;
+    const currentPage = getState().entities.companies.page.page;
     const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
-    if (diffInMinutes < 10) return;
+    if (currentPage === page && diffInMinutes < 10) return;
 
     dispatch(apiCallBegan({
         url: url + `?page=${page}`,

@@ -45,10 +45,10 @@ export default slice.reducer;
 //Action creators
 const url = "/users";
 export const loadUsers = (page = 1) => (dispatch, getState) => {
-    const { lastFetch } = getState().entities.bugs;
-
+    const { lastFetch } = getState().entities.users;
+    const currentPage = getState().entities.users.page.page;
     const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
-    if (diffInMinutes < 10) return;
+    if (currentPage === page && diffInMinutes < 10) return;
 
     dispatch(apiCallBegan({
         url: url + `?page=${page}`,

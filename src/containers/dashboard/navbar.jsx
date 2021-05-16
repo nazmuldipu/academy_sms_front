@@ -1,10 +1,29 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import auth from "../../services/authService";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { isAuth, loggedOut } from "../../features/auth/authSlice";
+
 const Navbar = () => {
-  const onLogout = () => {
-    auth.logout();
+  // const onLogout = () => {
+  //   auth.logout();
+  // };
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => isAuth(dispatch, state));
+
+  useEffect(() => {
+    if (!auth) {
+      history.push("/login");
+    }
+  }, [auth]);
+
+  const handleLogout = () => {
+    dispatch(loggedOut());
+    history.push("/login");
   };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark homeNavbar">
       <div className="container">
@@ -43,7 +62,7 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <div onClick={onLogout} className="nav-link">
+              <div onClick={handleLogout} className="nav-link">
                 Logout
               </div>
             </li>
