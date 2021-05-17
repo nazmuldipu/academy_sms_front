@@ -1,12 +1,17 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCurrentUser } from "../features/auth/authSlice";
 
 const RoleRoute = ({ path, component: Component, render, roles, ...rest }) => {
+  const { role } = useSelector((state) => getCurrentUser(state));
+
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (true) {
+        const validateRole = roles.some((r) => r === role);
+        if (!validateRole) {
           return (
             <Redirect
               to={{

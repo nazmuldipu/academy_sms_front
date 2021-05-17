@@ -69,7 +69,7 @@ export const isAuth = (dispatch, state) => {
 }
 
 export const getCurrentUser = (state) => {
-    return jwtDecode(state.auth.toekn);
+    return jwtDecode(state.auth.token);
 }
 
 

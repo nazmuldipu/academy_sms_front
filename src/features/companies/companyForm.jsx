@@ -15,8 +15,8 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
       .regex(/^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$/, "Phone")
       .label("Phone number"),
     web: Joi.string().label("Web address"),
-    max_entity: Joi.number().label("Web address"),
-    sms_quota: Joi.number().label("Web address"),
+    max_entity: Joi.number().label("Maximum Entity"),
+    sms_quota: Joi.number().label("SMS Quota"),
     per_month: Joi.number().required().label("Per Month"),
   };
 

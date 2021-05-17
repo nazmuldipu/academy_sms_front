@@ -1,43 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCompanies, saveCompany, updateCompany } from "./companiesSlice";
-
+import BuySMSForm from "./buySMSForm";
+import { loadCompanies } from "./companiesSlice";
 import CompanyTable from "./companyTable";
-import CompanyForm from "./companyForm";
 
-const CompanyIndex = () => {
+const BuySMS = () => {
   const dispatch = useDispatch();
   const companyPage = useSelector((state) => state.entities.companies.page);
+
+  const [company, setCompany] = useState({});
 
   useEffect(() => {
     dispatch(loadCompanies(1));
   }, []);
 
-  const [company, setCompany] = useState({});
-  const [edit, setEdit] = useState(false);
-
   const handleSelect = async (company) => {
     setCompany(company);
-    setEdit(true);
-  };
-
-  const handleClear = async () => {
-    setEdit(false);
-    setCompany({});
-  };
-
-  const handleSubmit = async (event) => {
-    if (edit) {
-      dispatch(updateCompany(company._id, event));
-    } else {
-      dispatch(saveCompany(event));
-    }
-    setCompany({});
   };
 
   const handlePagination = (page) => {
     if (companyPage.page !== page) dispatch(loadCompanies(page));
+  };
+
+  const handleSubmit = async (event) => {
+    console.log(event);
+    setCompany({});
+  };
+
+  const handleClear = async () => {
+    setCompany({});
   };
 
   return (
@@ -51,15 +43,19 @@ const CompanyIndex = () => {
           ></CompanyTable>
         </div>
         <div className="col-md-5">
-          <CompanyForm
-            company={company}
-            onSubmit={handleSubmit}
-            onClear={handleClear}
-          ></CompanyForm>
+          {company.name ? (
+            <BuySMSForm
+              company={company}
+              onSubmit={handleSubmit}
+              onClear={handleClear}
+            ></BuySMSForm>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default CompanyIndex;
+export default BuySMS;
