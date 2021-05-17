@@ -11,16 +11,7 @@ const UserForm = ({ user, onSubmit, onClear }) => {
     password: Joi.string().min(5).required().label("Password"),
   };
 
-  const {
-    data,
-    initForm,
-    renderInput,
-    renderButton,
-    validateSubmit,
-    validateForm,
-  } = useForm({
-    schema,
-  });
+  const { data, initForm, renderInput, renderButton, validateSubmit } = useForm({ schema, });
 
   useEffect(() => {
     if (user && user.name) {
@@ -33,8 +24,6 @@ const UserForm = ({ user, onSubmit, onClear }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log(validateForm());
     if (validateSubmit(e)) {
       onSubmit(data);
     }

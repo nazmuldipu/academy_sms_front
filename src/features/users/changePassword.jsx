@@ -1,43 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadUsers, updateUser, saveUser } from "./usersSlice";
-
-// import { getAll } from "../../services/userService";
 import UserTable from "./userTable";
-import UserForm from "./userForm";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUsers, changePassword } from "./usersSlice";
+import ChangePasswordForm from "./changePasswordForm";
 
-const UsersIndex = () => {
+const ChangePassword = () => {
   const dispatch = useDispatch();
   const userPage = useSelector((state) => state.entities.users.page);
   const [user, setUser] = useState({});
-  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     dispatch(loadUsers(1));
   }, []);
 
-  const handleSelect = async (user) => {
-    setEdit(true);
-    setUser(user);
-  };
-
   const handlePagination = (page) => {
     if (page && userPage.page !== page) dispatch(loadUsers(page));
   };
 
+  const handleSelect = async (user) => {
+    setUser(user);
+  };
+
   const handleSubmit = async (event) => {
     console.log(event);
-    if (edit) {
-      dispatch(updateUser(user._id, event));
-    } else {
-      dispatch(saveUser(event));
-    }
+    // if (edit) {
+    dispatch(changePassword(user._id, event));
+    // } else {
+    //   dispatch(saveUser(event));
+    // }
     setUser({});
   };
 
   const handleClear = async () => {
-    setEdit(false);
     setUser({});
   };
 
@@ -54,11 +49,19 @@ const UsersIndex = () => {
         </div>
 
         <div className="col-md-5">
-          <UserForm user={user} onSubmit={handleSubmit} onClear={handleClear} />
+          {user.name ? (
+            <ChangePasswordForm
+              user={user}
+              onSubmit={handleSubmit}
+              onClear={handleClear}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default UsersIndex;
+export default ChangePassword;

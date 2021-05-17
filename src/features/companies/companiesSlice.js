@@ -27,7 +27,6 @@ const slice = createSlice({
         },
         companyUpdated: (companies, action) => {
             const index = companies.page.docs.findIndex(c => c._id === action.payload._id);
-            console.log(action.payload, index);
             companies.page.docs.splice(index, 1, action.payload);
         }
     }
@@ -63,12 +62,34 @@ export const saveCompany = (company) => apiCallBegan({
     url,
     method: 'post',
     data: company,
-    onSuccess: companyAdded.type
+    onStart: companiesRequested.type,
+    onSuccess: companyAdded.type,
+    onError: companiesRequestFailed.type
 })
 
 export const updateCompany = (id, company) => apiCallBegan({
     url: url + `/${id}`,
     method: 'put',
     data: company,
-    onSuccess: companyUpdated.type
+    onStart: companiesRequested.type,
+    onSuccess: companyUpdated.type,
+    onError: companiesRequestFailed.type
+})
+
+export const addSMS = (id, data) => apiCallBegan({
+    url: url + `/buysms/${id}`,
+    method: 'patch',
+    data,
+    onStart: companiesRequested.type,
+    onSuccess: companyUpdated.type,
+    onError: companiesRequestFailed.type
+})
+
+export const maxLimit = (id, data) => apiCallBegan({
+    url: url + `/maxlimit/${id}`,
+    method: 'patch',
+    data,
+    onStart: companiesRequested.type,
+    onSuccess: companyUpdated.type,
+    onError: companiesRequestFailed.type
 })

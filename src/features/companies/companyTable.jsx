@@ -15,7 +15,7 @@ const CompanyTable = ({ companyPage, select, onPagination }) => {
           className="btn btn-sm btn-outline-success"
           onClick={() => select(company)}
         >
-          Edit
+          Select
         </button>
       ),
     },
@@ -27,7 +27,7 @@ const CompanyTable = ({ companyPage, select, onPagination }) => {
     <div className="shadow-sm">
       {companyPage.docs && (
         <Table
-          tableName={"User Table"}
+          tableName={"Company Table"}
           columns={columns}
           data={companyPage}
           onPagination={onPagination}

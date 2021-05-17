@@ -14,13 +14,20 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
       .required()
       .regex(/^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$/, "Phone")
       .label("Phone number"),
-    web: Joi.string().label("Web address"),
+    web: Joi.string().allow("").allow(null).label("Web address"),
     max_entity: Joi.number().label("Maximum Entity"),
     sms_quota: Joi.number().label("SMS Quota"),
     per_month: Joi.number().required().label("Per Month"),
   };
 
-  const { data, initForm, renderInput, renderButton, validateSubmit } = useForm({ schema });  
+  const {
+    data,
+    initForm,
+    renderInput,
+    renderButton,
+    validateSubmit,
+    validateForm,
+  } = useForm({ schema });
 
   useEffect(() => {
     if (company && company.name) {
@@ -32,8 +39,14 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(validateForm(e));
     if (validateSubmit(e)) {
-      onSubmit(data);
+      const obj = { ...data };
+
+      Object.keys(obj).forEach(
+        (k) => !obj[k] && obj[k] !== undefined && delete obj[k]
+      );
+      onSubmit(obj);
     }
   };
 

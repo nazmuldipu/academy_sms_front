@@ -28,6 +28,7 @@ const CompanyIndex = () => {
   };
 
   const handleSubmit = async (event) => {
+    console.log(event);
     if (edit) {
       dispatch(updateCompany(company._id, event));
     } else {

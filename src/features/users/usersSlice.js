@@ -27,7 +27,6 @@ const slice = createSlice({
         },
         userUpdated: (users, action) => {
             const index = users.page.docs.findIndex(c => c._id === action.payload._id);
-            console.log(action.payload, index);
             users.page.docs.splice(index, 1, action.payload);
         }
     }
@@ -62,12 +61,25 @@ export const saveUser = (user) => apiCallBegan({
     url,
     method: 'post',
     data: user,
-    onSuccess: userAdded.type
+    onStart: usersRequested.type,
+    onSuccess: userAdded.type,
+    onError: usersRequestFailed.type
 })
 
 export const updateUser = (id, user) => apiCallBegan({
     url: url + `/${id}`,
     method: 'put',
     data: user,
-    onSuccess: userUpdated.type
+    onStart: usersRequested.type,
+    onSuccess: userUpdated.type,
+    onError: usersRequestFailed.type
+})
+
+export const changePassword = (id, data) => apiCallBegan({
+    url: url + `/change-password/${id}`,
+    method: 'patch',
+    data,
+    onStart: usersRequested.type,
+    onSuccess: userUpdated.type,
+    onError: usersRequestFailed.type
 })

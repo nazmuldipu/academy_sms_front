@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BuySMSForm from "./buySMSForm";
-import { loadCompanies } from "./companiesSlice";
+import { loadCompanies, addSMS } from "./companiesSlice";
 import CompanyTable from "./companyTable";
 
 const BuySMS = () => {
@@ -24,7 +24,7 @@ const BuySMS = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log(event);
+    dispatch(addSMS(company._id, event));
     setCompany({});
   };
 

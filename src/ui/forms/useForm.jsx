@@ -8,8 +8,13 @@ const useForm = ({ schema }) => {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
-  const initForm = (data) => {
-    setData(data);
+  const initForm = (obj) => {
+    const formData = {};
+    Object.keys(schema).forEach(key=>{
+      formData[key] = obj[key];
+    })
+    console.log(formData);
+    setData(formData);
   };
 
   const handleChange = ({ currentTarget: input }) => {

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCompanies } from "./companiesSlice";
+import { loadCompanies, maxLimit } from "./companiesSlice";
 import CompanyTable from "./companyTable";
 import EntityLimitForm from "./entityLimitForm";
 
@@ -24,6 +24,9 @@ const EntityLimit = () => {
   };
 
   const handleSubmit = async (event) => {
+    dispatch(maxLimit(company._id, event));
+    setCompany({});
+
     console.log(event);
     setCompany({});
   };
@@ -43,11 +46,15 @@ const EntityLimit = () => {
           ></CompanyTable>
         </div>
         <div className="col-md-5">
-          <EntityLimitForm
-            company={company}
-            onSubmit={handleSubmit}
-            onClear={handleClear}
-          ></EntityLimitForm>
+          {company.name ? (
+            <EntityLimitForm
+              company={company}
+              onSubmit={handleSubmit}
+              onClear={handleClear}
+            ></EntityLimitForm>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
