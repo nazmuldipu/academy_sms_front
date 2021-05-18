@@ -3,27 +3,23 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUsers, updateUser, saveUser } from "./usersSlice";
 
-// import { getAll } from "../../services/userService";
 import UserTable from "./userTable";
 import UserForm from "./userForm";
 
 const UsersIndex = () => {
   const dispatch = useDispatch();
   const userPage = useSelector((state) => state.entities.users.page);
+  const paginate = useSelector((state) => state.pagination);
   const [user, setUser] = useState({});
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    dispatch(loadUsers(1));
-  }, []);
+    dispatch(loadUsers(paginate));
+  }, [paginate]);
 
   const handleSelect = async (user) => {
     setEdit(true);
     setUser(user);
-  };
-
-  const handlePagination = (page) => {
-    if (page && userPage.page !== page) dispatch(loadUsers(page));
   };
 
   const handleSubmit = async (event) => {
@@ -48,8 +44,7 @@ const UsersIndex = () => {
         <div className="col-md-7">
           <UserTable
             userPage={userPage}
-            select={handleSelect}
-            onPagination={handlePagination}
+            select={handleSelect}            
           ></UserTable>
         </div>
 

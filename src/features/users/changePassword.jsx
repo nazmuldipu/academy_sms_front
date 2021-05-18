@@ -8,27 +8,19 @@ import ChangePasswordForm from "./changePasswordForm";
 const ChangePassword = () => {
   const dispatch = useDispatch();
   const userPage = useSelector((state) => state.entities.users.page);
+  const paginate = useSelector((state) => state.pagination);
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    dispatch(loadUsers(1));
-  }, []);
-
-  const handlePagination = (page) => {
-    if (page && userPage.page !== page) dispatch(loadUsers(page));
-  };
+    dispatch(loadUsers(paginate));
+  }, [paginate]);
 
   const handleSelect = async (user) => {
     setUser(user);
   };
 
   const handleSubmit = async (event) => {
-    console.log(event);
-    // if (edit) {
     dispatch(changePassword(user._id, event));
-    // } else {
-    //   dispatch(saveUser(event));
-    // }
     setUser({});
   };
 
@@ -38,13 +30,11 @@ const ChangePassword = () => {
 
   return (
     <div className="container">
-      {/* <div>{errMsg}</div> */}
       <div className="row my-3">
         <div className="col-md-7">
           <UserTable
             userPage={userPage}
             select={handleSelect}
-            onPagination={handlePagination}
           ></UserTable>
         </div>
 

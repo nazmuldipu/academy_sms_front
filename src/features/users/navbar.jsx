@@ -8,7 +8,7 @@ const UserNavbar = () => {
     { path: "/dashboard/users", icon: "fa-list", label: "List" },
     {
       path: "/dashboard/users/assign",
-      icon: "fa-usre",
+      icon: "fa-user",
       label: "Assign User",
     },
     {

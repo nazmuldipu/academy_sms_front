@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { apiCallBegan } from '../../store/api'
 
-import moment from 'moment';
-
 const slice = createSlice({
     name: 'users',
     initialState: {
@@ -43,14 +41,9 @@ export default slice.reducer;
 
 //Action creators
 const url = "/users";
-export const loadUsers = (page = 1) => (dispatch, getState) => {
-    const { lastFetch } = getState().entities.users;
-    const currentPage = getState().entities.users.page.page;
-    const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
-    if (currentPage === page && diffInMinutes < 10) return;
-
+export const loadUsers = ({ page, limit, sort, order }) => (dispatch, getState) => {
     dispatch(apiCallBegan({
-        url: url + `?page=${page}`,
+        url: url + `?page=${page}&limit=${limit}&sort=${sort}&order=${order}`,
         onStart: usersRequested.type,
         onSuccess: usersReceived.type,
         onError: usersRequestFailed.type
@@ -77,6 +70,24 @@ export const updateUser = (id, user) => apiCallBegan({
 
 export const changePassword = (id, data) => apiCallBegan({
     url: url + `/change-password/${id}`,
+    method: 'patch',
+    data,
+    onStart: usersRequested.type,
+    onSuccess: userUpdated.type,
+    onError: usersRequestFailed.type
+})
+
+export const assignCompany = (id, data) => apiCallBegan({
+    url: url + `/assignCompany/${id}`,
+    method: 'patch',
+    data,
+    onStart: usersRequested.type,
+    onSuccess: userUpdated.type,
+    onError: usersRequestFailed.type
+})
+
+export const removeCompany = (id, data) => apiCallBegan({
+    url: url + `/removeCompany/${id}`,
     method: 'patch',
     data,
     onStart: usersRequested.type,

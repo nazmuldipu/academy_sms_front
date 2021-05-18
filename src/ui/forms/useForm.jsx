@@ -13,7 +13,6 @@ const useForm = ({ schema }) => {
     Object.keys(schema).forEach(key=>{
       formData[key] = obj[key];
     })
-    console.log(formData);
     setData(formData);
   };
 
