@@ -29,6 +29,10 @@ const Navbar = () => {
     },
     { path: "/dashboard/users", label: "Users", roles: ["ADMIN"] },
     { path: "/dashboard/companies", label: "Companies", roles: ["ADMIN"] },
+    { path: "/dashboard/classes", label: "Classes", roles: ["COMPANY"] },
+    { path: "/dashboard/students", label: "Students", roles: ["COMPANY"] },
+    { path: "/dashboard/sms", label: "SMS", roles: ["COMPANY"] },
+    { path: "/dashboard/barta", label: "বার্তা", roles: ["COMPANY"] },
   ];
 
   const handleLogout = () => {

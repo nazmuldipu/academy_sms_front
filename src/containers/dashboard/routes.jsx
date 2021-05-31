@@ -7,6 +7,10 @@ import Navbar from "./navbar";
 import CompanyRoutes from "../../features/companies/routes";
 import UsersRoutes from "../../features/users/routes";
 import RoleRoute from "../../services/roleRoutes";
+import ClassesRoutes from "../../features/classes/routes";
+import StudentsRoutes from "../../features/students/routes";
+import SMSRoutes from "./../../features/sms/routes";
+import BartaRoutes from "./../../features/barta/routes";
 
 const DashboardRouter = () => {
   return (
@@ -23,8 +27,26 @@ const DashboardRouter = () => {
           component={CompanyRoutes}
           roles={["ADMIN"]}
         />
-        {/* <Route path="/dashboard/users" component={UsersRoutes} /> */}
-        {/* <Route path="/dashboard/companies" component={CompanyRoutes} /> */}
+        <RoleRoute
+          path="/dashboard/classes"
+          component={ClassesRoutes}
+          roles={["COMPANY"]}
+        />
+        <RoleRoute
+          path="/dashboard/students"
+          component={StudentsRoutes}
+          roles={["COMPANY"]}
+        />
+        <RoleRoute
+          path="/dashboard/sms"
+          component={SMSRoutes}
+          roles={["COMPANY"]}
+        />
+        <RoleRoute
+          path="/dashboard/barta"
+          component={BartaRoutes}
+          roles={["COMPANY"]}
+        />
         <Route exact path="/dashboard" component={DashboardIndex} />
         <Redirect to="/not-found" />
       </Switch>
