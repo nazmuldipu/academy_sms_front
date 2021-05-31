@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { apiCallBegan } from '../../store/api'
 
-import moment from 'moment';
-
 const slice = createSlice({
     name: 'companies',
     initialState: {
@@ -43,15 +41,9 @@ export default slice.reducer;
 
 //Action creators
 const url = "/companies";
-export const loadCompanies = (page = 1) => (dispatch, getState) => {
-    //Implement caching
-    const { lastFetch } = getState().entities.companies;
-    const currentPage = getState().entities.companies.page.page;
-    const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
-    if (currentPage === page && diffInMinutes < 10) return;
-
+export const loadCompanies = ({ page, limit, sort, order, param }) => (dispatch) => {
     dispatch(apiCallBegan({
-        url: url + `?page=${page}`,
+        url: url + `?page=${page}&limit=${limit}&sort=${sort}&order=${order}&param=${param}`,
         onStart: companiesRequested.type,
         onSuccess: companiesReceived.type,
         onError: companiesRequestFailed.type

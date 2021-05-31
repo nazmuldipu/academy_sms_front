@@ -30,7 +30,6 @@ const CompanyTable = ({ companyPage, select, onPagination }) => {
           tableName={"Company Table"}
           columns={columns}
           data={companyPage}
-          onPagination={onPagination}
         />
       )}
     </div>

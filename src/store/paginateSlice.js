@@ -20,6 +20,11 @@ const slice = createSlice({
             pagination.sort = action.payload.sort;
             pagination.order = action.payload.order;
         },
+        searched: (pagination, action) => {
+            pagination.param = action.payload.param;
+            pagination.page = 1;
+            pagination.order = 'asc';
+        }
     }
 });
 
@@ -27,5 +32,6 @@ export const {
     limitchanged,
     pageChanged,
     sortChanged,
+    searched,
 } = slice.actions;
 export default slice.reducer;

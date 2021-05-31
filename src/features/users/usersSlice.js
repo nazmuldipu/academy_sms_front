@@ -41,9 +41,9 @@ export default slice.reducer;
 
 //Action creators
 const url = "/users";
-export const loadUsers = ({ page, limit, sort, order }) => (dispatch, getState) => {
+export const loadUsers = ({ page, limit, sort, order, param }) => (dispatch) => {
     dispatch(apiCallBegan({
-        url: url + `?page=${page}&limit=${limit}&sort=${sort}&order=${order}`,
+        url: url + `?page=${page}&limit=${limit}&sort=${sort}&order=${order}&param=${param}`,
         onStart: usersRequested.type,
         onSuccess: usersReceived.type,
         onError: usersRequestFailed.type
@@ -86,10 +86,9 @@ export const assignCompany = (id, data) => apiCallBegan({
     onError: usersRequestFailed.type
 })
 
-export const removeCompany = (id, data) => apiCallBegan({
+export const removeCompany = (id) => apiCallBegan({
     url: url + `/removeCompany/${id}`,
     method: 'patch',
-    data,
     onStart: usersRequested.type,
     onSuccess: userUpdated.type,
     onError: usersRequestFailed.type

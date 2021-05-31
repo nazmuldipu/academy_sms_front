@@ -6,6 +6,7 @@ const UserTable = ({ userPage, select }) => {
     { path: "name", label: "Name" },
     { path: "email", label: "Email" },
     { path: "role", label: "Role" },
+    { path: "company.name", label: "Company" },
     {
       key: "Select",
       content: (user) => (
@@ -22,7 +23,7 @@ const UserTable = ({ userPage, select }) => {
   return (
     <div className="border rounded shadow-sm">
       {userPage.docs && (
-        <Table tableName={"User Table"} columns={columns} data={userPage}/>
+        <Table tableName={"User Table"} columns={columns} data={userPage} />
       )}
     </div>
   );

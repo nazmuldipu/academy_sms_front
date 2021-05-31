@@ -8,19 +8,16 @@ import EntityLimitForm from "./entityLimitForm";
 const EntityLimit = () => {
   const dispatch = useDispatch();
   const companyPage = useSelector((state) => state.entities.companies.page);
+  const paginate = useSelector((state) => state.pagination);
 
   const [company, setCompany] = useState({});
 
   useEffect(() => {
-    dispatch(loadCompanies(1));
-  }, []);
+    dispatch(loadCompanies(paginate));
+  }, [paginate]);
 
   const handleSelect = async (company) => {
     setCompany(company);
-  };
-
-  const handlePagination = (page) => {
-    if (companyPage.page !== page) dispatch(loadCompanies(page));
   };
 
   const handleSubmit = async (event) => {
@@ -42,7 +39,6 @@ const EntityLimit = () => {
           <CompanyTable
             companyPage={companyPage}
             select={handleSelect}
-            onPagination={handlePagination}
           ></CompanyTable>
         </div>
         <div className="col-md-5">

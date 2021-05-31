@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sortChanged } from "../../store/paginateSlice";
+import { sortChanged, searched } from "../../store/paginateSlice";
 
 const TableHeader = ({ tableName, columns }) => {
   const [sort, setSort] = useState("name");
@@ -20,11 +20,27 @@ const TableHeader = ({ tableName, columns }) => {
     dispatch(sortChanged({ sort: event, order }));
   };
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    dispatch(searched({ param: event.target.search.value }));
+  };
+
   return (
     <thead>
       <tr>
         <th colSpan={columns.length} className="table-head text-white">
-          {tableName}
+          <div className="d-flex justify-content-between">
+            <div>{tableName}</div>
+            <form onSubmit={handleSearch}>
+              <input
+                className="form-control form-control-sm me-2"
+                type="search"
+                name="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </form>
+          </div>
         </th>
       </tr>
       <tr>

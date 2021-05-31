@@ -9,10 +9,11 @@ import CompanyForm from "./companyForm";
 const CompanyIndex = () => {
   const dispatch = useDispatch();
   const companyPage = useSelector((state) => state.entities.companies.page);
+  const paginate = useSelector((state) => state.pagination);
 
   useEffect(() => {
-    dispatch(loadCompanies(1));
-  }, []);
+    dispatch(loadCompanies(paginate));
+  }, [paginate]);
 
   const [company, setCompany] = useState({});
   const [edit, setEdit] = useState(false);
@@ -37,10 +38,6 @@ const CompanyIndex = () => {
     setCompany({});
   };
 
-  const handlePagination = (page) => {
-    if (companyPage.page !== page) dispatch(loadCompanies(page));
-  };
-
   return (
     <div className="container">
       <div className="row my-3">
@@ -48,7 +45,6 @@ const CompanyIndex = () => {
           <CompanyTable
             companyPage={companyPage}
             select={handleSelect}
-            onPagination={handlePagination}
           ></CompanyTable>
         </div>
         <div className="col-md-5">
