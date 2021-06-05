@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "../../ui/tables/table";
 
-const CompanyTable = ({ companyPage, select, onPagination }) => {
+const CompanyTable = ({ companyPage, select }) => {
   const columns = [
     { path: "name", label: "Name" },
     { path: "phone", label: "Phone" },
@@ -20,8 +20,6 @@ const CompanyTable = ({ companyPage, select, onPagination }) => {
       ),
     },
   ];
-
-
 
   return (
     <div className="shadow-sm">

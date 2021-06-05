@@ -1,0 +1,13 @@
+.fa {
+  margin: 10px 30px 30px;
+  height: 120px;
+  width: 120px;
+  font-size: 110px;
+  color: green;
+  border: 3px solid green;
+  border-radius: 50%;
+}
+h2 {
+  font-size: 36px;
+  font-weight: 400;
+}
