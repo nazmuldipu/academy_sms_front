@@ -10,9 +10,9 @@ const useForm = ({ schema }) => {
 
   const initForm = (obj) => {
     const formData = {};
-    Object.keys(schema).forEach(key=>{
+    Object.keys(schema).forEach((key) => {
       formData[key] = obj[key];
-    })
+    });
     setData(formData);
   };
 
@@ -114,6 +114,19 @@ const useForm = ({ schema }) => {
     );
   };
 
+  const renderLabel = (name, label) => {
+    return (
+      <div className="form-group">
+        <label className="col-form-label-sm p-0 mb-1" htmlFor="name">
+          {label}
+        </label>
+        <label name="name" id="name" className="form-control form-control-sm">
+          {name}
+        </label>
+      </div>
+    );
+  };
+
   return {
     data,
     initForm,
@@ -123,6 +136,7 @@ const useForm = ({ schema }) => {
     renderSelect,
     renderCheckBox,
     renderButton,
+    renderLabel,
   };
 };
 

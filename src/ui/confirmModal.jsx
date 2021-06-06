@@ -1,4 +1,4 @@
-import "./confirmModal.css";
+import styles from "./confirmModal.module.css";
 
 import React from "react";
 import { Modal } from "react-bootstrap";
@@ -9,14 +9,19 @@ const ConfirmModal = ({ show, onConfirm, onClose }) => {
       <Modal show={show} onHide={onClose} animation={false}>
         <div className="container py-4">
           <div className="text-center">
-            <i className="fa fa-check text-center" aria-hidden="true"></i>
+            <i
+              className={"fa fa-check text-center " + styles.faIcon}
+              aria-hidden="true"
+            ></i>
           </div>
-          <h2 className="modal-title text-center">Are you sure?</h2>
+          <h2 className={"modal-title text-center " + styles.h2Head}>
+            Are you sure?
+          </h2>
           <p className="text-center m-4 text-black-50">
             Do you really want to delete these records? This process cannot be
             undone.
           </p>
-          <div class="d-flex justify-content-evenly">
+          <div className="d-flex justify-content-evenly">
             <button className="btn btn-secondary rounded-0" onClick={onClose}>
               Close
             </button>

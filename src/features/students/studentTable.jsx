@@ -1,17 +1,18 @@
 import React from "react";
 import Table from "./../../ui/tables/table";
 
-const ClassTable = ({ classPage, select }) => {
+const StudentTable = ({ studentPage, select }) => {
   const columns = [
     { path: "serial", label: "Serial" },
     { path: "name", label: "Name" },
+    { path: "group.name", label: "Class" },
     {
       key: "Select",
       className: "text-end",
-      content: (classObj) => (
+      content: (student) => (
         <button
           className="btn btn-sm btn-outline-success"
-          onClick={() => select(classObj)}
+          onClick={() => select(student)}
         >
           Select
         </button>
@@ -21,11 +22,15 @@ const ClassTable = ({ classPage, select }) => {
 
   return (
     <div className="shadow-sm">
-      {classPage.docs && (
-        <Table tableName={"Class Table"} columns={columns} data={classPage} />
+      {studentPage.docs && (
+        <Table
+          tableName={"Student Table"}
+          columns={columns}
+          data={studentPage}
+        />
       )}
     </div>
   );
 };
 
-export default ClassTable;
+export default StudentTable;

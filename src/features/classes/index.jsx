@@ -33,7 +33,6 @@ const ClassesIndex = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log(event);
     if (edit) {
       dispatch(updateClass(classObj._id, event));
     } else {
@@ -43,7 +42,6 @@ const ClassesIndex = () => {
   };
 
   const handleDelete = async (event) => {
-    console.log("Delete");
     dispatch(deleteClass(classObj._id));
     setClass({});
   };

@@ -32,12 +32,7 @@ const BuySMS = () => {
   return (
     <div className="container">
       <div className="row my-3">
-        <div className="col-md-7">
-          <CompanyTable
-            companyPage={companyPage}
-            select={handleSelect}
-          ></CompanyTable>
-        </div>
+        
         <div className="col-md-5">
           {company.name ? (
             <BuySMSForm
@@ -48,6 +43,13 @@ const BuySMS = () => {
           ) : (
             ""
           )}
+        </div>
+
+        <div className="col-md-7 my-3 my-md-0 ">
+          <CompanyTable
+            companyPage={companyPage}
+            select={handleSelect}
+          ></CompanyTable>
         </div>
       </div>
     </div>

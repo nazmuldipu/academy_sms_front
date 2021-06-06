@@ -23,7 +23,6 @@ const UsersIndex = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log(event);
     if (edit) {
       dispatch(updateUser(user._id, event));
     } else {
@@ -40,16 +39,12 @@ const UsersIndex = () => {
   return (
     <div className="container">
       {/* <div>{errMsg}</div> */}
-      <div className="row my-3">
-        <div className="col-md-7">
-          <UserTable
-            userPage={userPage}
-            select={handleSelect}            
-          ></UserTable>
-        </div>
-
-        <div className="col-md-5">
+      <div className="row">
+        <div className="col-md-5 my-3">
           <UserForm user={user} onSubmit={handleSubmit} onClear={handleClear} />
+        </div>
+        <div className="col-md-7">
+          <UserTable userPage={userPage} select={handleSelect}></UserTable>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import ChangePassword from './changePassword';
 
 const UsersRoutes = () => {
   return (
-    <div className="container">
+    <div>
       <UserNavbar />
       <Switch>
         <Route exact path="/dashboard/users" component={UsersIndex} />

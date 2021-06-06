@@ -38,8 +38,8 @@ const EntityLimitForm = ({ company, onSubmit, onClear, error }) => {
 
           {renderInput("max_entity", "Maximum Entity*", "Number")}
 
-          <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-            {renderButton("Update", "btn btn-sm btn-block btn-success")}
+          <div className="d-grid gap-2 d-flex justify-content-end mt-3">
+            {renderButton("Update", "btn btn-sm btn-success")}
             <button
               type="button"
               className="btn btn-sm btn-danger"

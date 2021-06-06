@@ -10,6 +10,7 @@ const CompanyTable = ({ companyPage, select }) => {
     { path: "per_month", label: "Per Month" },
     {
       key: "Select",
+      className: "text-end",
       content: (company) => (
         <button
           className="btn btn-sm btn-outline-success"

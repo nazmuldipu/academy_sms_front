@@ -9,6 +9,7 @@ const UserTable = ({ userPage, select }) => {
     { path: "company.name", label: "Company" },
     {
       key: "Select",
+      className: "text-end",
       content: (user) => (
         <button
           className="btn btn-sm btn-outline-success"

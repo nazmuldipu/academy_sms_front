@@ -95,20 +95,25 @@ const TableFotter = ({ data, columns }) => {
                 </ul>
               </nav>
             </div>
-            <div className="col-auto pe-0">
-              <small>Page</small>
-            </div>
             <div className="col-auto">
-              <select
-                onChange={handleLimitChange}
-                className="form-select form-select-sm"
-                aria-label="Default select example"
-              >
-                <option value="8">8</option>
-                <option value="16">16</option>
-                <option value="32">32</option>
-                <option value="64">64</option>
-              </select>
+              <div className="row">
+                <div className="col-auto">
+                  {" "}
+                  <small>Page</small>
+                </div>
+                <div className="col-auto">
+                  <select
+                    onChange={handleLimitChange}
+                    className="form-select form-select-sm"
+                    aria-label="Default select example"
+                  >
+                    <option value="8">8</option>
+                    <option value="16">16</option>
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </td>

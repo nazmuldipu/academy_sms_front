@@ -33,8 +33,8 @@ const RegistrationForm = ({ onSubmit, error }) => {
           {renderInput("email", "Email")}
           {renderInput("password", "Password", "password")}
 
-          <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-            {renderButton("Register", "btn btn-sm btn-block btn-success")}
+          <div className="d-grid gap-2 d-flex justify-content-end mt-3">
+            {renderButton("Register", "btn btn-sm btn-success")}
           </div>
 
           <div>

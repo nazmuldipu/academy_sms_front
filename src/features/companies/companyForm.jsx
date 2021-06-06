@@ -26,7 +26,6 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
     renderInput,
     renderButton,
     validateSubmit,
-    validateForm,
   } = useForm({ schema });
 
   useEffect(() => {
@@ -39,7 +38,6 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(validateForm(e));
     if (validateSubmit(e)) {
       const obj = { ...data };
 
@@ -66,8 +64,8 @@ const CompanyForm = ({ company, onSubmit, onClear, error }) => {
           {renderInput("sms_quota", "SMS Quota", "Number")}
           {renderInput("per_month", "Per Month*", "Number")}
 
-          <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-            {renderButton("Save", "btn btn-sm btn-block btn-success")}
+          <div className="d-grid gap-2 d-flex justify-content-end mt-3">
+            {renderButton("Save", "btn btn-sm btn-success")}
             <button
               type="button"
               className="btn btn-sm btn-danger"

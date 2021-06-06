@@ -23,6 +23,9 @@ const slice = createSlice({
         classAdded: (classes, action) => {
             classes.page.docs.push(action.payload)
         },
+        classSelected: (classes, action) => {
+            classes.classObj = action.payload;
+        },
         classUpdated: (classes, action) => {
             const index = classes.page.docs.findIndex(c => c._id === action.payload._id);
             classes.page.docs.splice(index, 1, action.payload);
@@ -40,7 +43,8 @@ export const {
     classesReceived,
     classesRequested,
     classesRequestFailed,
-    classDeleted
+    classDeleted,
+    classSelected
 } = slice.actions;
 export default slice.reducer;
 

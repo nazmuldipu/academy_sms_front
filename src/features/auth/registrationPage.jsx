@@ -12,9 +12,8 @@ const RegistrationPage = () => {
     try {
       setErrorMessage("");
       setLoading(true);
-      const resp = await userService.register(event);
+      await userService.register(event);
       setLoading(false);
-      console.log(resp);
       useHistory.push("/login");
     } catch (ex) {
       setLoading(false);

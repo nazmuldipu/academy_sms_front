@@ -31,13 +31,6 @@ const ChangePassword = () => {
   return (
     <div className="container">
       <div className="row my-3">
-        <div className="col-md-7">
-          <UserTable
-            userPage={userPage}
-            select={handleSelect}
-          ></UserTable>
-        </div>
-
         <div className="col-md-5">
           {user.name ? (
             <ChangePasswordForm
@@ -48,6 +41,10 @@ const ChangePassword = () => {
           ) : (
             ""
           )}
+        </div>
+
+        <div className="col-md-7 my-3 my-md-0">
+          <UserTable userPage={userPage} select={handleSelect}></UserTable>
         </div>
       </div>
     </div>

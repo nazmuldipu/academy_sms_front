@@ -16,7 +16,9 @@ const TableBody = ({ data, columns }) => {
       {data.map((item) => (
         <tr key={item._id}>
           {columns.map((column) => (
-            <td key={createKey(item, column)}>{renderCell(item, column)}</td>
+            <td key={createKey(item, column)} className={column.className}>
+              {renderCell(item, column)}
+            </td>
           ))}
         </tr>
       ))}

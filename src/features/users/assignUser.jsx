@@ -21,7 +21,6 @@ const AssignUser = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log(user._id, event);
     dispatch(assignCompany(user._id, event));
     setUser({});
   };
@@ -38,10 +37,6 @@ const AssignUser = () => {
   return (
     <div className="container">
       <div className="row my-3">
-        <div className="col-md-7">
-          <UserTable userPage={userPage} select={handleSelect}></UserTable>
-        </div>
-
         <div className="col-md-5">
           {user.name ? (
             <AssignUserForm
@@ -58,6 +53,10 @@ const AssignUser = () => {
             // />
             ""
           )}
+        </div>
+
+        <div className="col-md-7 my-3 my-md-0">
+          <UserTable userPage={userPage} select={handleSelect}></UserTable>
         </div>
       </div>
     </div>

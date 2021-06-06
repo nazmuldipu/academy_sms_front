@@ -7,7 +7,7 @@ import EntityLimit from './entityLimit';
 
 const CompanyRoutes = () => {
   return (
-    <div className="container">
+    <div>
       <CompanyNavbar />
       <Switch>
         <Route exact path="/dashboard/companies/buySMS" component={BuySMS} />

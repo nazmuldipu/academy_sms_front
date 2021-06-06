@@ -4,7 +4,7 @@ import StudentsIndex from './index';
 
 const StudentsRoutes = () => {
   return (
-    <div className="container">
+    <div>
       {/* <CompanyNavbar /> */}
       <Switch>
         <Route exact path="/dashboard/students" component={StudentsIndex} />

@@ -4,7 +4,7 @@ import ClassesIndex from './index';
 
 const ClassesRoutes = () => {
   return (
-    <div className="container">
+    <div>
       {/* <CompanyNavbar /> */}
       <Switch>
         <Route exact path="/dashboard/classes" component={ClassesIndex} />

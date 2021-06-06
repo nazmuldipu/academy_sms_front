@@ -10,7 +10,7 @@ const Select = ({ name, label, options, error, ...rest }) => {
         name={name}
         id={name}
         {...rest}
-        className="form-control form-control-sm"
+        className="form-select form-select-sm"
       >
         <option value="">Please Select</option>
         {options.map((option) => (
