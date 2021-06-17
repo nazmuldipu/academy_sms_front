@@ -34,6 +34,18 @@ const useForm = ({ schema }) => {
       case "number":
         formData[input.name] = Number(input.value);
         break;
+      case "textarea":
+        let value = input.value;
+        if (JSON.parse(input.dataset.ascii)) {
+          console.log("optimizing");
+          value = value.replace(
+            /[^A-Za-z 0-9 .,?""!@#$%^&*()-_=+;:<>/\\|}{[\]`~]*/g,
+            ""
+          );
+          value = value.replace(/ +(?= )/g, "");
+        }
+        formData[input.name] = value;
+        break;
 
       default:
         formData[input.name] = input.value;
@@ -82,17 +94,23 @@ const useForm = ({ schema }) => {
     );
   };
 
-  const renderTextArea = (name, label, rows = 3, maxlength) => {
+  const renderTextArea = (name, label, rows = 3, maxlength, ascii = false) => {
     return (
-      <TextArea
-        name={name}
-        value={data[name] || ""}
-        label={label}
-        rows={rows}
-        maxlength={maxlength}
-        onChange={handleChange}
-        error={errors[name]}
-      />
+      <div>
+        <TextArea
+          name={name}
+          value={data[name] || ""}
+          label={label}
+          rows={rows}
+          maxLength={maxlength}
+          data-ascii={ascii}
+          onChange={handleChange}
+          error={errors[name]}
+        />
+        <div className="form-text text-end">
+          {data[name] ? data[name].length : 0}/{maxlength}
+        </div>
+      </div>
     );
   };
 

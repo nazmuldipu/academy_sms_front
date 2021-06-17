@@ -27,7 +27,6 @@ const AllSMS = () => {
 
           <div className="p-3">
             <form onSubmit={handleSubmit}>
-              {/* TODO: change following select form component to type ahed component */}
               {renderTextArea("message", "Message", 4, 160)}
               <div className="d-grid gap-2 d-flex justify-content-end mt-3">
                 {renderButton("Update", "btn btn-sm btn-success")}

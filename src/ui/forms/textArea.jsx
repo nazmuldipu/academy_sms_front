@@ -12,7 +12,6 @@ const TextArea = ({ name, label, error, ...rest }) => {
         name={name}
         id={name}
       ></textarea>
-
       {error && <small className="form-text text-danger">{error}</small>}
     </div>
   );
