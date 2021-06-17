@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import Input from "./input";
 import Select from "./select";
 import CheckBox from "./checkBox";
+import TextArea from "./textArea";
 
 const useForm = ({ schema }) => {
   const [data, setData] = useState({});
@@ -81,6 +82,20 @@ const useForm = ({ schema }) => {
     );
   };
 
+  const renderTextArea = (name, label, rows = 3, maxlength) => {
+    return (
+      <TextArea
+        name={name}
+        value={data[name] || ""}
+        label={label}
+        rows={rows}
+        maxlength={maxlength}
+        onChange={handleChange}
+        error={errors[name]}
+      />
+    );
+  };
+
   const renderCheckBox = (name, label) => {
     return (
       <CheckBox
@@ -133,6 +148,7 @@ const useForm = ({ schema }) => {
     validateSubmit,
     validateForm,
     renderInput,
+    renderTextArea,
     renderSelect,
     renderCheckBox,
     renderButton,
